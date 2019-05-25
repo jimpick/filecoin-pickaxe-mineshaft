@@ -66,6 +66,18 @@ export class Mineshaft {
   async bundleImports () {
     return await this.collaboration.sub('bundleImports', 'ormap')
   }
+
+  async dealRequests () {
+    return await this.collaboration.sub('dealRequests', 'ormap')
+  }
+
+  async minerDealRequests () {
+    return await this.collaboration.sub('minerDealRequests', 'ormap')
+  }
+
+  async cidDealRequests () {
+    return await this.collaboration.sub('cidDealRequests', 'ormap')
+  }
 }
 
 let mineshaft // Singleton
