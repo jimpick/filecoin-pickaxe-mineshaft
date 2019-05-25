@@ -1,4 +1,5 @@
-import assert from 'assert' import fs from 'fs'
+import assert from 'assert'
+import fs from 'fs'
 import path from 'path'
 import { homedir } from 'os'
 import PeerBase from 'peer-base'
