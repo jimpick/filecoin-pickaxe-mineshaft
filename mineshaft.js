@@ -35,7 +35,7 @@ export class Mineshaft {
 
   async start () {
     if (fs.existsSync(this.configFile)) {
-      const config = fs.readFileSync(configFile, 'utf8')
+      const config = fs.readFileSync(this.configFile, 'utf8')
       const { readKey, writeKey } = JSON.parse(config)
       this.keys = await PeerBase.keys.uriDecode(readKey + '-' + writeKey)
     } else {
