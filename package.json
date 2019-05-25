@@ -1,8 +1,9 @@
 {
   "name": "@jimpick/filecoin-pickaxe-mineshaft",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Use peer-base to store filecoin-pickaxe models",
   "main": "dist/pickaxe.js",
+  "module": "./pickaxe.js",
   "type": "module",
   "scripts": {
     "build": "babel *.js --out-dir ./dist",
