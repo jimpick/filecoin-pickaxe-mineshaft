@@ -1,0 +1,35 @@
+{
+  "name": "@jimpick/filecoin-pickaxe-mineshaft",
+  "version": "0.0.1",
+  "description": "Use peer-base to store filecoin-pickaxe models",
+  "main": "dist/pickaxe.js",
+  "type": "module",
+  "scripts": {
+    "build": "babel *.js --out-dir ./dist",
+    "prepublish": "npm run build"
+  },
+  "keywords": [],
+  "author": "Jim Pick (@jimpick)",
+  "license": "MIT",
+  "dependencies": {
+    "ipfs-repo": "^0.26.6",
+    "multihashes": "^0.4.14",
+    "peer-base": "peer-base/peer-base#fix/load-ormap-causal-context"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "sourceMaps": "inline"
+  },
+  "browserslist": "node 10",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimpick/filecoin-pickaxe-mineshaft.git"
+  }
+}
