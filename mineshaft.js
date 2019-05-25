@@ -1,5 +1,4 @@
-import assert from 'assert'
-import fs from 'fs'
+import assert from 'assert' import fs from 'fs'
 import path from 'path'
 import { homedir } from 'os'
 import PeerBase from 'peer-base'
@@ -7,9 +6,12 @@ import IPFSRepo from 'ipfs-repo'
 import multihash from 'multihashes'
 
 export class Mineshaft {
-  constructor (repoName) {
+  constructor (repoName, configFile) {
     assert(!!repoName)
     this.repoPath = path.resolve(homedir(), '.' + repoName)
+    this.configFile = (
+      configFile ? configFile : path.join(this.repoPath, 'pickaxe-config')
+    )
     const repo = new IPFSRepo(this.repoPath)
     const appName = 'peer-pad/2' // Re-use pinning infrastructure set up for PeerPad
     this.app = PeerBase(appName, {
@@ -31,8 +33,7 @@ export class Mineshaft {
   }
 
   async start () {
-    const configFile = path.join(this.repoPath, 'pickaxe-config')
-    if (fs.existsSync(configFile)) {
+    if (fs.existsSync(this.configFile)) {
       const config = fs.readFileSync(configFile, 'utf8')
       const { readKey, writeKey } = JSON.parse(config)
       this.keys = await PeerBase.keys.uriDecode(readKey + '-' + writeKey)
@@ -40,8 +41,8 @@ export class Mineshaft {
       this.keys = await PeerBase.keys.generate()
       const readKey = PeerBase.keys.uriEncodeReadOnly(this.keys)
       const writeKey = PeerBase.keys.uriEncode(this.keys).replace(/^.*-/, '')
-      const confit = { readKey, writeKey }
-      fs.writeFileSync(configFile, JSON.stringify(config, null, 2))
+      const config = { readKey, writeKey }
+      fs.writeFileSync(this.configFile, JSON.stringify(config, null, 2))
     }
 
     const data = Buffer.concat([
@@ -82,7 +83,7 @@ export class Mineshaft {
 
 let mineshaft // Singleton
 
-export async function mineshaftStart (repoName) {
+export async function mineshaftStart (repoName, configFile) {
   mineshaft = new Mineshaft(repoName)
   await mineshaft.start()
   return mineshaft
