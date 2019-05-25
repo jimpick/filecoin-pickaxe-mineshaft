@@ -85,7 +85,7 @@ export class Mineshaft {
 let mineshaft // Singleton
 
 export async function mineshaftStart (repoName, configFile) {
-  mineshaft = new Mineshaft(repoName)
+  mineshaft = new Mineshaft(repoName, configFile)
   await mineshaft.start()
   return mineshaft
 }
