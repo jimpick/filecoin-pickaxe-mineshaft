@@ -1,6 +1,6 @@
 {
   "name": "@jimpick/filecoin-pickaxe-mineshaft",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Use peer-base to store filecoin-pickaxe models",
   "main": "dist/mineshaft.js",
   "module": "./mineshaft.js",
@@ -12,15 +12,15 @@
   "keywords": [],
   "author": "Jim Pick (@jimpick)",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "ipfs-repo": "^0.26.6",
     "multihashes": "^0.4.14",
     "peer-base": "peer-base/peer-base#temp-fix/delta-crdts-mvreg-fix"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4"
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5"
   },
   "babel": {
     "presets": [
